@@ -11,4 +11,15 @@ package ec.edu.ups.modelo;
  */
 public class Telefono {
     
+    /**
+    * Declaracion de los atributos del a clas Usuario para posteriormente ser utilizados en 
+    * en los diferentes metodos a utilizar
+    */
+    private int codigo;
+    private String numero;
+    private String tipo;
+    private String operadora;
+    
+    
+   
 }

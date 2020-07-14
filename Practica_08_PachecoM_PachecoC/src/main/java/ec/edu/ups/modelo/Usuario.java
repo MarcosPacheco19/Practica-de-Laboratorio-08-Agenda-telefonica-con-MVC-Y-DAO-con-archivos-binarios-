@@ -11,4 +11,15 @@ package ec.edu.ups.modelo;
  */
 public class Usuario {
     
+    /**
+    * Declaracion de los atributos del a clas Usuario para posteriormente ser utilizados en 
+    * en los diferentes metodos a utilizar
+    */
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String contraseña;
+    
+    
 }
