@@ -32,7 +32,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     public UsuarioDAO() {
         
         try{  
-        archivo = new RandomAccessFile("usuario.dat", "rw");
+        archivo = new RandomAccessFile("datos/usuario.dat", "rw");
         
         }catch(IOException ex){ 
             System.out.println("Error de Lectura y Escritura");
@@ -44,7 +44,17 @@ public class UsuarioDAO implements IUsuarioDAO{
     
     @Override
     public void create(Usuario usuario) {
-       
+       try{
+       archivo.seek(archivo.length());
+       archivo.writeUTF(usuario.getCedula());
+       archivo.writeUTF(usuario.getNombre());
+       archivo.writeUTF(usuario.getApellido());
+       archivo.writeUTF(usuario.getCorreo());
+       archivo.writeUTF(usuario.getContraseña());
+       }catch(IOException ex){
+           System.out.println("Error de Lectura y Escritura(create:UsuarioDAO):");
+           ex.printStackTrace();
+       }
     }
 
     @Override
@@ -61,6 +71,39 @@ public class UsuarioDAO implements IUsuarioDAO{
     @Override
     public void delete(Usuario usuario) {
 
+    }
+    
+    @Override
+    public boolean Login(String correo, String contraseña){
+        try{
+            int salto = 60;
+            int registro=128;
+            
+            byte [] correoArreglo = new byte[50];
+            byte [] contraseñaArreglo = new byte [8];
+            
+            while(salto < archivo.length()){
+                archivo.seek(salto);
+                
+                
+                String correoArchivo = archivo.readUTF();
+                
+                
+                String contraseñaArchivo = archivo.readUTF();
+                
+                System.out.println(correoArchivo);
+                System.out.println(contraseñaArchivo);
+                
+                if(correo.equals(correoArchivo.trim())&& contraseña.equals(contraseñaArchivo.trim())){
+                    return true;
+                }
+                salto += registro;
+            }
+        }catch(IOException ex){
+            System.out.println("Error de Lectura y Escritura(Login:UsuarioDAO):");
+            ex.printStackTrace();
+        }
+        return false;
     }
     
 }
