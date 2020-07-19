@@ -23,6 +23,10 @@ public class Usuario {
     private String correo;
     private String contraseña;
 
+    public Usuario() {
+    }
+
+    
     
     public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
         this.cedula = cedula;
