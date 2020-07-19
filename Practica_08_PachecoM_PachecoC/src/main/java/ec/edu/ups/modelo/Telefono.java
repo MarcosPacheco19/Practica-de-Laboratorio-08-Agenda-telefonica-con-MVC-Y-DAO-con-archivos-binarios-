@@ -19,6 +19,12 @@ public class Telefono {
     private String numero;
     private String tipo;
     private String operadora;
+    private Usuario usuario;
+
+    public Telefono() {
+    }
+    
+    
 
     public Telefono(int codigo, String numero, String tipo, String operadora) {
         this.codigo = codigo;
@@ -43,7 +49,7 @@ public class Telefono {
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+         this.numero = validarEspacios(numero, 20);
     }
 
     public String getTipo() {
@@ -51,7 +57,7 @@ public class Telefono {
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.tipo = validarEspacios(tipo, 25);
     }
 
     public String getOperadora() {
@@ -59,9 +65,18 @@ public class Telefono {
     }
 
     public void setOperadora(String operadora) {
-        this.operadora = operadora;
+        this.operadora = validarEspacios(operadora, 25);
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -92,5 +107,28 @@ public class Telefono {
         return "Telefono{" + "codigo=" + codigo + ", numero=" + numero + ", tipo=" + tipo + ", operadora=" + operadora + '}';
     }
     
+    
+     public String validarEspacios(String cadena, int espacios) {
+        if (cadena.length() == espacios) {
+            return cadena;
+        } else {
+            if (cadena.length() < espacios) {
+                cadena = llenarEspacios(cadena, espacios);
+                return cadena;
+            } else {
+                cadena = cortarEspacios(cadena, espacios);
+                return cadena;
+            }
+        }
+
+    }
+
+    public String llenarEspacios(String cadena, int espacios) {
+        return String.format("%-" + espacios + "s", cadena);
+    }
+
+    public String cortarEspacios(String cadena, int espacios) {
+        return cadena.substring(0, espacios);
+    }
  
 }
