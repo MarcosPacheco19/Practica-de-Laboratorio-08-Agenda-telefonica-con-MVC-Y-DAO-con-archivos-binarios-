@@ -45,7 +45,7 @@ public class Usuario {
     }
 
     public void setCedula(String cedula) {
-        this.cedula = cedula;
+       this.cedula = validarEspacios(cedula, 10);
     }
 
     public String getNombre() {
@@ -53,7 +53,7 @@ public class Usuario {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = validarEspacios(nombre, 25);
     }
 
     public String getApellido() {
@@ -61,7 +61,7 @@ public class Usuario {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = validarEspacios(apellido, 25);
     }
 
     public String getCorreo() {
@@ -69,7 +69,7 @@ public class Usuario {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        this.correo = validarEspacios(correo, 50);
     }
 
     public String getContraseña() {
@@ -77,41 +77,36 @@ public class Usuario {
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contraseña = validarEspacios(contraseña, 8);
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 31 * hash + Objects.hashCode(this.correo);
-        hash = 31 * hash + Objects.hashCode(this.contraseña);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.contraseña, other.contraseña)) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
         return "Usuario{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", correo=" + correo + ", contrase\u00f1a=" + contraseña + '}';
     }
     
+    
+    public String validarEspacios(String cadena, int espacios) {
+        if (cadena.length() == espacios) {
+            return cadena;
+        } else {
+            if (cadena.length() < espacios) {
+                cadena = llenarEspacios(cadena, espacios);
+                return cadena;
+            } else {
+                cadena = cortarEspacios(cadena, espacios);
+                return cadena;
+            }
+        }
+
+    }
+
+    public String llenarEspacios(String cadena, int espacios) {
+        return String.format("%-" + espacios + "s", cadena);
+    }
+
+    public String cortarEspacios(String cadena, int espacios) {
+        return cadena.substring(0, espacios);
+    }
 }
