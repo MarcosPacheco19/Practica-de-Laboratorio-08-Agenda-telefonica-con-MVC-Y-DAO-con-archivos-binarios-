@@ -189,30 +189,19 @@ public class TelefonoDAO implements ITelefonoDAO{
         
          try {
             if (archivo.length() > 0) {
-                //archivo.seek(archivo.length() - tamañoRegistro);
+                
                 int aux = (int) (archivo.length() / tamañoRegistro);
-
-                /*if(archivo.readInt()==0)
-                {
-                    archivo.seek(archivo.length()-(tamañoRegistro*2));
-                    System.out.println(archivo.readInt()+"\n1");
-                    return archivo.readInt();
-                    
-                }else{
-                    System.out.println(archivo.readInt()+"\n2");
-                    return archivo.readInt();
-                }*/
                 System.out.println(aux);
                 return aux;
 
             } else {
-                //System.out.println(archivo.readInt() + "\n3");
+                
                 return 0;
             }
         } catch (IOException ex) {
             System.out.println("Error codigo(codigoTelefono)");
         }
-        //System.out.println(archivo.readInt()+"\n4");
+        
         return codigo;
     }
     
