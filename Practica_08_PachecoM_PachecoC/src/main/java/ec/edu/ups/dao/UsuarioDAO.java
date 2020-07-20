@@ -134,11 +134,6 @@ public class UsuarioDAO implements IUsuarioDAO{
         try {
             int salto = 66;
 
-            byte[] correoArreglo = new byte[50];
-            byte[] contraseñaArreglo = new byte[8];
-            /* FileReader aux = new FileReader("C:\\Users\\Adolfo\\Desktop\\POO\\InterfazGraficaconArchivosBinarios\\datos\\usuario.dat");
-            BufferedReader archivoLectura = new BufferedReader(aux);      */
-
             while (salto < archivo.length()) {
                 archivo.seek(salto);
 

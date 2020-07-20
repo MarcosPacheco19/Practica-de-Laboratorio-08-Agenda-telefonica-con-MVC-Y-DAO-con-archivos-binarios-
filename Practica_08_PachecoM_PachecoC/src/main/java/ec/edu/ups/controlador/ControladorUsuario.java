@@ -30,18 +30,17 @@ public class ControladorUsuario {
 
     
      public ControladorUsuario(UsuarioDAO clienteDAO, TelefonoDAO direccionDAO) {
-        //   this.vista = vistaCliente;
+        
         this.usuarioDAO = clienteDAO;
 
-        // this.vistaT = vistaDireccion;
+        
         this.telefonoDAO = direccionDAO;
 
         contadorTelefono = 0;
 
     }
-     
-     
-     public void crearUsuario(String nombre, String apellido, String cedula, String correo,
+
+    public void crearUsuario(String nombre, String apellido, String cedula, String correo,
             String password) {
 
         usuario = new Usuario();
@@ -54,15 +53,18 @@ public class ControladorUsuario {
         System.out.println(usuario.toString());
         usuarioDAO.create(usuario);
     }
-     
+
     public Usuario iniciarSesion(String correo, String password) {
 
-        //se obtienen los datos de contraseÃ±a y correo
-        //se envian los datos y se recibe una persona
+       
         usuario = usuarioDAO.iniciarSesion(correo, password);
         return usuario;
     }
-    
+
+    public Usuario devolverUsuario() {
+        return usuario;
+    }
+
     public void actualizarUsuario(String nombre, String apellido, String cedula, String correo,
             String password) {
         usuario.setNombre(nombre);
@@ -83,9 +85,8 @@ public class ControladorUsuario {
             System.out.println(tele.toString());
         }
     }
-    
-    
-     public void imprimirUsuario(Usuario usuario) {
+
+    public void imprimirUsuario(Usuario usuario) {
         System.out.println(usuario);
     }
 
@@ -93,9 +94,7 @@ public class ControladorUsuario {
         Map<String, Usuario> usuarios;
         usuarios = usuarioDAO.findAll();
 
-        /*for (Map.Entry<String, Usuario> usu : usuarios.entrySet()) {
-            System.out.println("uuu\n" + usu.toString());
-        }*/
+        
     }
 
     public Usuario buscar(String id) {
@@ -124,19 +123,14 @@ public class ControladorUsuario {
         telefono.setUsuario(usuario);
         telefonoDAO.create(telefono);
 
-        /*telefonoDAO.create(telefono);
-         usuario.agregarTelefono(telefono);
-        usuarioDAO.update(usuario);
-        System.out.println(usuario.getListaTelefonos());*/
+       
     }
 
     public void actualizarTelefono(String numero, String tipo, String operadora, int codigo) {
 
         telefono = new Telefono(codigo, numero, tipo, operadora);
         telefonoDAO.update(telefono);
-        //usuario.actualizarTelefono(telefono);
-        //usuarioDAO.update(usuario);
-        //System.out.println("\neditar\n" + usuario.getListaTelefonos());
+        
 
     }
 
@@ -153,8 +147,7 @@ public class ControladorUsuario {
 
     public void eliminarTelefono(int codigo) {
 
-        //telefono = telefonoDAO.read(codigo);
-        //usuario.eliminarTelefono(telefono);
+        
         telefonoDAO.delete(codigo);
 
     }
@@ -177,9 +170,5 @@ public class ControladorUsuario {
     public int codigoTelefono() {
         int conta = telefonoDAO.codigoTelefono();
         return (++conta);
-    }
-
-    public Usuario devolverUsuario() {
-        return usuario;
     }
 }

@@ -58,6 +58,24 @@ public class VentanaBuscarUsuarios extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListar = new javax.swing.JTable();
 
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
+
         jLabel1.setText("Cédula");
 
         btnAtras.setBackground(new java.awt.Color(255, 255, 255));
@@ -313,6 +331,11 @@ public class VentanaBuscarUsuarios extends javax.swing.JInternalFrame {
         llenarTablaTelefonos(telefonosDao);
         
     }//GEN-LAST:event_btnListarTodosActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+      
+        limpiar();
+    }//GEN-LAST:event_formInternalFrameActivated
 
     public void llenarTablaTelefonos(List<Telefono> teles) {
         DefaultTableModel modelo = (DefaultTableModel) tblListar.getModel();
